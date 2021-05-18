@@ -1,0 +1,239 @@
+ASSIGNMENT C2:
+
+CODE:
+import java.util.Scanner;
+
+public class Assignment_C2 {
+    static Scanner sc = new Scanner(System.in);
+    static int checkSafe(int[][] needMat, int[] work, int[] finish, int n, int m){
+        int cnt=0;
+
+        for(int i=0;i<n;i++){
+            cnt=0;
+            if(finish[i]==0){
+                for(int j=0;j<m;j++){
+                    if(needMat[i][j]<=work[j]){
+                        cnt++;
+                    }
+                } 
+                if(cnt==m){
+                    return i;
+                }
+            }
+
+        }
+        return -1;
+    }
+    public static void main(String args[]){
+        int n,m;
+        System.out.println("Enter number of processes");
+        n = sc.nextInt();
+        System.out.println("Enter number of resources");
+        m = sc.nextInt();
+        int allocation[][] = new int[n][m];
+        int max[][] = new int[n][m];
+        int avail[] = new int[m];
+        int work[] = new int[m];
+        int need[][] = new int[n][m];
+        int finish[] = new int[n];
+        for(int i=0;i<n;i++){
+            finish[i]=0;
+        }
+        System.out.println("Enter Allocation Matrix");
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                allocation[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println("Enter Max Matrix");
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                max[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println("Enter Availability Matrix");
+        for(int i=0;i<m;i++){
+            avail[i] = sc.nextInt();
+        }
+
+        for(int i=0;i<m;i++){
+            int sum=0;
+            for(int j=0;j<n;j++){
+                sum += allocation[j][i];
+            }
+            work[i] = avail[i]-sum;
+        }
+        System.out.println("Allocation Matrix:");
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(allocation[i][j]+"\t");
+            }
+            System.out.print("\n");
+        }
+        System.out.println("Max Matrix:");
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(max[i][j]+"\t");
+            }
+            System.out.print("\n");
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                need[i][j] = max[i][j] - allocation[i][j];
+            }
+        }
+
+        System.out.println("Work Matrix:");
+        for(int i=0;i<m;i++){
+            System.out.print(work[i]+"\t");
+        }
+
+        System.out.println("\nNeed Matrix:");
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(need[i][j]+"\t");
+            }
+            System.out.print("\n");
+        }
+        System.out.println("Sequence");
+        for(int i=0;i<n;i++){
+            int safe = checkSafe(need,work, finish,n,m);
+
+            if(safe!=-1){
+                System.out.println("Process "+safe);
+                finish[safe]=1;
+                for(int j=0;j<m;j++){
+                    work[j]=work[j]+allocation[safe][j];
+                }
+            }
+        }
+        boolean executed=false;
+        for(int i=0;i<n;i++){
+            if(finish[i]!=1){
+                executed=true;
+            }
+        }
+        if(executed==true){
+            System.out.println("Not Safe");
+        }else{
+            System.out.println("Safe");
+        }
+    }
+}
+
+SAFE OUTPUT:
+Enter number of processes
+5
+
+Enter number of resources
+4
+
+Enter Allocation Matrix
+0 0 1 2 
+1 0 0 0 
+1 3 5 4 
+0 6 3 2 
+0 0 1 4
+
+Enter Max Matrix
+0 0 1 2
+1 7 5 0
+2 3 5 6
+0 6 5 2
+0 6 5 6
+
+Enter Availability Matrix
+3 14 12 12
+
+Allocation Matrix:
+0	0	1	2	
+1	0	0	0	
+1	3	5	4	
+0	6	3	2	
+0	0	1	4	
+
+Max Matrix:
+0	0	1	2	
+1	7	5	0	
+2	3	5	6	
+0	6	5	2	
+0	6	5	6	
+
+Work Matrix:
+1	5	2	0	
+
+Need Matrix:
+0	0	0	0	
+0	7	5	0	
+1	0	0	2	
+0	0	2	0	
+0	6	4	2	
+
+Sequence
+Process 0
+Process 2
+Process 1
+Process 3
+Process 4
+Safe
+
+Process finished with exit code 0
+
+
+
+NOT SAFE OUTPUT:
+Enter number of processes
+5
+
+Enter number of resources
+4
+
+Enter Allocation Matrix
+0 0 1 2
+1 0 0 0
+1 3 5 4
+0 6 3 2
+0 0 1 4
+
+Enter Max Matrix
+0 0 1 2
+1 7 5 0
+2 3 5 6
+0 6 5 2
+0 6 5 95
+
+Enter Availability Matrix
+3 14 12 12
+
+Allocation Matrix:
+0	0	1	2	
+1	0	0	0	
+1	3	5	4	
+0	6	3	2	
+0	0	1	4	
+
+Max Matrix:
+0	0	1	2	
+1	7	5	0	
+2	3	5	6	
+0	6	5	2	
+0	6	5	95	
+
+Work Matrix:
+1	5	2	0	
+
+Need Matrix:
+0	0	0	0	
+0	7	5	0	
+1	0	0	2	
+0	0	2	0	
+0	6	4	91	
+
+Sequence
+Process 0
+Process 2
+Process 1
+Process 3
+Not Safe
+
+Process finished with exit code 0

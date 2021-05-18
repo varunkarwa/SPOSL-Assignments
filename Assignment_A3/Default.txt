@@ -1,0 +1,2 @@
+INCR	#3	AREG
+DECR	#3	BREG

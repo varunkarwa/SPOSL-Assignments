@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="libraryTable">
+    <library name="Downloads">
+      <CLASSES>
+        <root url="file://C:/Users/Public/Downloads" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+      <jarDirectory url="file://C:/Users/Public/Downloads" recursive="false" />
+    </library>
+  </component>
+</project>
