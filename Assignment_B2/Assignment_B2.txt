@@ -1,3 +1,26 @@
+Main.java:
+/*import java.lang.*;
+import java.io.*;
+*/
+public class Main {
+    int roll;
+    int marks;
+    //Constructor
+    public Main()
+    {
+        roll=20;
+        marks=88;
+    }
+    public static void main(String[] args)
+    {
+        Main t=new Main();
+        t.marks++;
+        System.out.println("roll no:"+t.roll+" Marks:"+t.marks);
+        t.roll--;
+    }
+}
+
+ASSIGNMENR_B2.l:
 %{
 #include<stdio.h>
 #include "string.h"
@@ -66,3 +89,103 @@ int yywrap()
 {
 return(1);
 }
+
+OUTPUT:
+Comment Starts:import java.lang.*;
+
+import java.io.*;
+
+Comment Ends
+
+Identifier: Main
+ Brackets: {
+
+    Data-Types: int
+ Variables: roll
+Delimiter: ;
+
+    Data-Types: int
+ Variables: marks
+Delimiter: ;
+
+    Comment: //Constructor
+
+    keywords: public
+ Variables: Main
+Brackets: (
+Brackets: )
+
+    Brackets: {
+
+        Variables: roll
+Arithmetic Operators: =
+Number: 20
+Delimiter: ;
+
+        Variables: marks
+Arithmetic Operators: =
+Number: 88
+Delimiter: ;
+
+    Brackets: }
+
+    keywords: public
+ keywords: static
+ keywords: void
+ keywords: main
+Brackets: (
+Data-Types: String
+[] Variables: args
+Brackets: )
+
+    Brackets: {
+
+        Variables: Main
+ Variables: t
+Arithmetic Operators: =
+Variables: new
+ Variables: Main
+Brackets: (
+Brackets: )
+Delimiter: ;
+
+        Variables: t
+Delimiter: .
+Variables: marks
+Unary Operator: ++
+Delimiter: ;
+
+        keywords: System
+Delimiter: .
+keywords: out
+Delimiter: .
+keywords: println
+Brackets: (
+"Variables: roll
+ Variables: no
+:"Arithmetic Operators: +
+Variables: t
+Delimiter: .
+Variables: roll
+Arithmetic Operators: +
+" Variables: Marks
+:"Arithmetic Operators: +
+Variables: t
+Delimiter: .
+Variables: marks
+Brackets: )
+Delimiter: ;
+
+        Variables: t
+Delimiter: .
+Variables: roll
+Arithmetic Operators: -
+Arithmetic Operators: -
+Delimiter: ;
+
+    Brackets: }
+
+Brackets: }
+
+index | name
+0 | roll
